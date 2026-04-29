@@ -1,3 +1,3 @@
-:HL["/stanford-rideshare/_next/static/chunks/0i7c-jjsyohmh.css","style"]
+:HL["/stanford-rideshare/_next/static/chunks/0ck8-mx2gdn3h.css","style"]
 :HL["/stanford-rideshare/_next/static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"rides","param":null,"prefetchHints":0,"slots":{"children":{"name":"id","param":{"type":"d","key":"3","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"Y93KFWsjO91yL6axiQSen"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"rides","param":null,"prefetchHints":0,"slots":{"children":{"name":"id","param":{"type":"d","key":"3","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"Fk9yFyYIHejDj8AY9lab8"}
