@@ -1,330 +1,601 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="script" fetchPriority="low" href="/stanford-rideshare/_next/static/chunks/15xrurgzs99gv.js"/><script src="/stanford-rideshare/_next/static/chunks/0dgq26a5_oy.a.js" async=""></script><script src="/stanford-rideshare/_next/static/chunks/0n~dq4kpx9xxx.js" async=""></script><script src="/stanford-rideshare/_next/static/chunks/0y892lnw9v2gl.js" async=""></script><script src="/stanford-rideshare/_next/static/chunks/turbopack-08.sj8~8ipjsl.js" async=""></script><script src="/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js" async=""></script><script src="/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js" async=""></script><script src="/stanford-rideshare/_next/static/chunks/0ubjkk.qqwbpn.js" async=""></script><title>Stanford RideShare</title><meta name="description" content="Ride with your Stanford community"/><link rel="icon" href="/stanford-rideshare/favicon.ico?favicon.0x3dzn~oxb6tn.ico" sizes="256x256" type="image/x-icon"/><style>
-          *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-          html, body { height: 100%; }
-          body {
-            background: #EBEBEB;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            color: #111;
-          }
-          a { text-decoration: none; color: inherit; }
-          button { border: none; cursor: pointer; font-family: inherit; }
-          input { font-family: inherit; }
-          * { -webkit-tap-highlight-color: transparent; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Stanford RideShare</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#EBEBEB;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#111}
+a{text-decoration:none;color:inherit}
+button{border:none;cursor:pointer;font-family:inherit;background:none}
+input{font-family:inherit;border:none;outline:none}
+*{-webkit-tap-highlight-color:transparent}
 
-          .app-shell {
-            max-width: 430px;
-            margin: 0 auto;
-            min-height: 100vh;
-            background: #fff;
-            position: relative;
-            box-shadow: 0 0 40px rgba(0,0,0,0.12);
-          }
+.shell{max-width:430px;margin:0 auto;min-height:100vh;background:#fff;position:relative;box-shadow:0 0 60px rgba(0,0,0,0.15);overflow-x:hidden}
 
-          /* Header */
-          .header {
-            background: linear-gradient(160deg, #8C1515 0%, #5E0E0E 100%);
-            padding: 56px 20px 24px;
-          }
-          .header-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-          .header-icon {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: rgba(255,255,255,0.18);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 15px;
-          }
-          .header-title { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
-          .header-sub { color: rgba(255,220,220,0.8); font-size: 13px; }
+/* screens */
+.screen{display:none;min-height:100vh;padding-bottom:90px}
+.screen.active{display:block}
 
-          /* Profile bar */
-          .profile-bar {
-            display: flex; align-items: center; gap: 12px;
-            background: #fff; padding: 12px 20px;
-            border-bottom: 1px solid #f0f0f0;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-          }
-          .avatar {
-            width: 38px; height: 38px; border-radius: 50%;
-            background: linear-gradient(135deg, #8C1515, #A52020);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0;
-          }
-          .avatar-lg {
-            width: 54px; height: 54px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-weight: 700; font-size: 17px; flex-shrink: 0;
-          }
-          .profile-name { font-size: 14px; font-weight: 600; color: #111; }
-          .profile-meta { font-size: 12px; color: #999; margin-top: 1px; }
-          .link-red { color: #8C1515; font-size: 12px; font-weight: 600; margin-left: auto; }
+/* header */
+.hdr{background:linear-gradient(160deg,#8C1515 0%,#5E0E0E 100%);padding:52px 20px 22px}
+.hdr-brand{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.hdr-icon{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;font-size:15px}
+.hdr-title{color:#fff;font-size:20px;font-weight:700;letter-spacing:-0.3px}
+.hdr-sub{color:rgba(255,220,220,0.75);font-size:13px}
 
-          /* Cards */
-          .card {
-            background: #fff; border-radius: 18px;
-            border: 1px solid #f0f0f0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            overflow: hidden;
-          }
-          .card-p { padding: 16px; }
+/* profile bar */
+.pbar{display:flex;align-items:center;gap:12px;background:#fff;padding:12px 20px;border-bottom:1px solid #f0f0f0;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#8C1515,#A52020);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0}
+.av-lg{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;flex-shrink:0}
+.pname{font-size:14px;font-weight:600;color:#111}
+.pmeta{font-size:12px;color:#999;margin-top:1px}
+.lnk-red{color:#8C1515;font-size:12px;font-weight:600;margin-left:auto;cursor:pointer}
 
-          /* CTA buttons */
-          .cta-primary {
-            display: block; border-radius: 20px; padding: 18px 20px;
-            background: linear-gradient(135deg, #8C1515 0%, #5E0E0E 100%);
-            box-shadow: 0 6px 20px rgba(140,21,21,0.35);
-            color: #fff; text-decoration: none;
-            transition: opacity 0.15s;
-          }
-          .cta-primary:active { opacity: 0.88; }
-          .cta-secondary {
-            display: block; border-radius: 20px; padding: 18px 20px;
-            background: #fff;
-            border: 1.5px solid #8C1515;
-            box-shadow: 0 2px 10px rgba(140,21,21,0.1);
-            text-decoration: none;
-            transition: opacity 0.15s;
-          }
-          .cta-secondary:active { opacity: 0.88; }
-          .cta-inner { display: flex; align-items: center; gap: 14px; }
-          .cta-icon {
-            width: 48px; height: 48px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; flex-shrink: 0;
-          }
-          .cta-icon-primary { background: rgba(255,255,255,0.15); }
-          .cta-icon-secondary { background: #FBF0F0; }
-          .cta-arrow { margin-left: auto; font-size: 22px; }
+/* cards */
+.card{background:#fff;border-radius:18px;border:1px solid #f0f0f0;box-shadow:0 2px 8px rgba(0,0,0,0.06);padding:16px}
 
-          /* Section label */
-          .section-label {
-            font-size: 11px; font-weight: 700; color: #aaa;
-            text-transform: uppercase; letter-spacing: 0.08em;
-            margin-bottom: 10px;
-          }
+/* CTAs */
+.cta{display:block;border-radius:20px;padding:17px 20px;cursor:pointer}
+.cta-p{background:linear-gradient(135deg,#8C1515 0%,#5E0E0E 100%);box-shadow:0 6px 20px rgba(140,21,21,0.33);color:#fff;margin-bottom:10px}
+.cta-p:active{opacity:0.88}
+.cta-s{background:#fff;border:1.5px solid #8C1515;box-shadow:0 2px 10px rgba(140,21,21,0.1)}
+.cta-s:active{opacity:0.88}
+.cta-in{display:flex;align-items:center;gap:14px}
+.cta-ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.cta-ic-p{background:rgba(255,255,255,0.15)}
+.cta-ic-s{background:#FBF0F0}
+.cta-arr{margin-left:auto;font-size:22px}
 
-          /* Stats strip */
-          .stats-strip {
-            background: #FBF0F0; border-radius: 18px;
-            padding: 16px; display: flex; justify-content: space-around; text-align: center;
-          }
-          .stats-num { font-size: 24px; font-weight: 800; color: #8C1515; }
-          .stats-label { font-size: 11px; color: #888; margin-top: 2px; }
-          .stats-divider { width: 1px; background: #E0BABA; }
+/* section label */
+.slbl{font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
 
-          /* Route chips */
-          .chips-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
-          .chips-row::-webkit-scrollbar { display: none; }
-          .chip {
-            flex-shrink: 0; background: #fff; border: 1px solid #eee;
-            border-radius: 14px; padding: 8px 14px;
-            display: flex; align-items: center; gap: 6px;
-            font-size: 13px; color: #333; font-weight: 500;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-            text-decoration: none;
-            transition: opacity 0.15s;
-          }
-          .chip:active { opacity: 0.75; }
+/* stats */
+.stats{background:#FBF0F0;border-radius:18px;padding:16px;display:flex;justify-content:space-around;text-align:center}
+.snum{font-size:24px;font-weight:800;color:#8C1515}
+.slb{font-size:11px;color:#888;margin-top:2px}
+.sdiv{width:1px;background:#E0BABA}
 
-          /* Bottom nav */
-          .bottom-nav {
-            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; max-width: 430px;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid #e8e8e8;
-            display: flex; justify-content: space-around;
-            padding: 8px 0 20px;
-            z-index: 100;
-          }
-          .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 16px; text-decoration: none; }
-          .nav-icon { font-size: 20px; }
-          .nav-label { font-size: 10px; font-weight: 600; color: #aaa; }
-          .nav-label-active { color: #8C1515; }
+/* chips */
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;background:#fff;border:1px solid #eee;border-radius:14px;padding:8px 14px;display:flex;align-items:center;gap:6px;font-size:13px;color:#333;font-weight:500;box-shadow:0 1px 4px rgba(0,0,0,0.06);cursor:pointer}
+.chip:active{opacity:0.75}
 
-          /* Ride list */
-          .ride-card {
-            background: #fff; border-radius: 18px;
-            border: 1px solid #f0f0f0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            padding: 16px; text-decoration: none; display: block;
-            transition: opacity 0.15s;
-          }
-          .ride-card:active { opacity: 0.88; }
-          .ride-driver-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-          .driver-info { flex: 1; min-width: 0; }
-          .driver-name-row { display: flex; align-items: center; gap: 6px; }
-          .driver-name { font-size: 14px; font-weight: 700; color: #111; }
-          .verified-badge {
-            font-size: 11px; font-weight: 700; padding: 2px 6px;
-            border-radius: 20px; background: #EAF3FF; color: #1a6cc4;
-          }
-          .driver-meta { font-size: 12px; color: #999; margin-top: 2px; }
-          .price-col { text-align: right; flex-shrink: 0; }
-          .price-big { font-size: 22px; font-weight: 800; color: #8C1515; }
-          .price-label { font-size: 11px; color: #aaa; }
+/* bottom nav */
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(255,255,255,0.93);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid #e8e8e8;display:flex;justify-content:space-around;padding:8px 0 20px;z-index:100}
+.ni{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 16px;cursor:pointer}
+.nic{font-size:20px}
+.nlb{font-size:10px;font-weight:600;color:#aaa}
+.nlb-a{color:#8C1515}
 
-          .route-line { display: flex; gap: 12px; margin-bottom: 12px; }
-          .route-dots { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
-          .dot-green { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
-          .dot-red { width: 10px; height: 10px; border-radius: 50%; background: #8C1515; flex-shrink: 0; }
-          .route-line-v { width: 2px; flex: 1; background: #e5e5e5; border-radius: 2px; margin: 3px 0; min-height: 20px; }
-          .route-texts { display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: 10px; }
-          .route-from { font-size: 13px; color: #666; }
-          .route-to { font-size: 13px; font-weight: 600; color: #111; }
+/* upcoming */
+.upc-in{display:flex;align-items:center;gap:12px}
+.upc-ic{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#E8F4FB,#C8E9F7);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.b-green{background:#ECFDF5;color:#15803d;border:1px solid #D1FAE5}
+.b-gray{background:#f7f7f7;color:#666;border:1px solid #eee}
 
-          .ride-footer { display: flex; align-items: center; gap: 6px; }
-          .ride-meta { font-size: 12px; color: #999; }
-          .ride-tags { margin-left: auto; display: flex; gap: 6px; }
-          .tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: #FBF0F0; color: #8C1515; }
+/* ride list */
+.rc{background:#fff;border-radius:18px;border:1px solid #f0f0f0;box-shadow:0 2px 8px rgba(0,0,0,0.06);padding:16px;margin-bottom:10px;cursor:pointer}
+.rc:active{opacity:0.88}
+.rdr{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.din{flex:1;min-width:0}
+.dnr{display:flex;align-items:center;gap:6px}
+.dna{font-size:14px;font-weight:700;color:#111}
+.vbg{font-size:11px;font-weight:700;padding:2px 6px;border-radius:20px;background:#EAF3FF;color:#1a6cc4}
+.dme{font-size:12px;color:#999;margin-top:2px}
+.pcol{text-align:right;flex-shrink:0}
+.pbig{font-size:22px;font-weight:800;color:#8C1515}
+.plbl{font-size:11px;color:#aaa}
 
-          /* Search bar in header */
-          .search-bar {
-            background: rgba(255,255,255,0.18); border-radius: 14px;
-            padding: 12px 16px; display: flex; align-items: center; gap: 10px;
-            border: 1px solid rgba(255,255,255,0.25); margin-top: 14px;
-          }
-          .search-input {
-            background: transparent; border: none; outline: none;
-            color: #fff; font-size: 14px; flex: 1;
-          }
-          .search-input::placeholder { color: rgba(255,255,255,0.5); }
+.rl{display:flex;gap:12px;margin-bottom:12px}
+.rdots{display:flex;flex-direction:column;align-items:center;padding-top:4px}
+.dg{width:10px;height:10px;border-radius:50%;background:#22c55e;flex-shrink:0}
+.dr{width:10px;height:10px;border-radius:50%;background:#8C1515;flex-shrink:0}
+.rlv{width:2px;flex:1;background:#e5e5e5;border-radius:2px;margin:3px 0;min-height:20px}
+.rts{display:flex;flex-direction:column;justify-content:space-between;flex:1;gap:10px}
+.rfrom{font-size:13px;color:#666}
+.rto{font-size:13px;font-weight:600;color:#111}
 
-          /* Filter pills */
-          .filters { display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px; background: #fff; border-bottom: 1px solid #f0f0f0; }
-          .filters::-webkit-scrollbar { display: none; }
-          .filter-pill {
-            flex-shrink: 0; padding: 7px 16px; border-radius: 20px;
-            font-size: 13px; font-weight: 600; transition: all 0.15s; cursor: pointer;
-          }
-          .filter-pill-inactive { background: #f3f3f3; color: #666; }
-          .filter-pill-active { background: linear-gradient(135deg,#8C1515,#5E0E0E); color: #fff; }
+.rftr{display:flex;align-items:center;gap:6px}
+.rme{font-size:12px;color:#999}
+.rtags{margin-left:auto;display:flex;gap:6px}
+.tag{font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;background:#FBF0F0;color:#8C1515}
 
-          /* Back button */
-          .back-btn {
-            width: 36px; height: 36px; border-radius: 50%;
-            background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 18px; text-decoration: none; flex-shrink: 0;
-          }
+/* search */
+.srch{background:rgba(255,255,255,0.18);border-radius:14px;padding:11px 16px;display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.25);margin-top:13px}
+.sinp{background:transparent;color:#fff;font-size:14px;flex:1}
+.sinp::placeholder{color:rgba(255,255,255,0.45)}
 
-          /* Detail map */
-          .map-placeholder {
-            height: 200px; position: relative;
-            background: linear-gradient(135deg,#dfe6f0,#c8d5e8);
-            display: flex; align-items: center; justify-content: center;
-          }
-          .map-pill {
-            background: #fff; border-radius: 14px; padding: 10px 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.14); z-index: 2;
-            display: flex; align-items: center; gap: 8px; font-size: 13px;
-          }
-          .map-back {
-            position: absolute; top: 56px; left: 16px;
-            width: 38px; height: 38px; border-radius: 50%;
-            background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            display: flex; align-items: center; justify-content: center;
-            color: #444; font-size: 18px; text-decoration: none; z-index: 3;
-          }
+/* filters */
+.flts{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;background:#fff;border-bottom:1px solid #f0f0f0}
+.flts::-webkit-scrollbar{display:none}
+.fp{flex-shrink:0;padding:7px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s}
+.fp-off{background:#f3f3f3;color:#666}
+.fp-on{background:linear-gradient(135deg,#8C1515,#5E0E0E);color:#fff}
 
-          /* Detail sections */
-          .detail-section { background: #fff; padding: 18px 20px; border-bottom: 1px solid #f5f5f5; }
-          .detail-label { font-size: 11px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+/* back btn */
+.back{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0}
 
-          .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 14px; }
-          .stat-box { border-radius: 14px; padding: 12px; text-align: center; }
-          .stat-box-red { background: #FBF0F0; }
-          .stat-box-gray { background: #f7f7f7; }
-          .stat-val-red { font-size: 20px; font-weight: 800; color: #8C1515; }
-          .stat-val { font-size: 20px; font-weight: 800; color: #222; }
-          .stat-sub { font-size: 11px; color: #999; margin-top: 2px; }
+/* map */
+.mapp{height:196px;position:relative;background:linear-gradient(135deg,#dfe6f0,#c8d5e8);display:flex;align-items:center;justify-content:center}
+.mpill{background:#fff;border-radius:14px;padding:10px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.14);z-index:2;display:flex;align-items:center;gap:8px;font-size:13px}
+.mback{position:absolute;top:52px;left:16px;width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;color:#444;font-size:18px;cursor:pointer;z-index:3}
 
-          /* Waypoints */
-          .waypoints { display: flex; gap: 6px; overflow-x: auto; }
-          .waypoints::-webkit-scrollbar { display: none; }
-          .waypoint { flex-shrink: 0; background: #FBF0F0; color: #8C1515; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 10px; }
-          .waypoint-arrow { color: #ddd; font-size: 13px; align-self: center; }
+/* detail */
+.ds{background:#fff;padding:18px 20px;border-bottom:1px solid #f5f5f5}
+.dlbl{font-size:11px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:13px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:13px}
+.sb{border-radius:14px;padding:12px;text-align:center}
+.sb-r{background:#FBF0F0}
+.sb-g{background:#f7f7f7}
+.sv-r{font-size:20px;font-weight:800;color:#8C1515}
+.sv{font-size:20px;font-weight:800;color:#222}
+.ss{font-size:11px;color:#999;margin-top:2px}
 
-          /* Reviews */
-          .review { display: flex; gap: 12px; margin-bottom: 14px; }
-          .review-avatar { width: 32px; height: 32px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #666; flex-shrink: 0; }
-          .review-name { font-size: 12px; font-weight: 700; color: #222; }
-          .review-stars { font-size: 11px; color: #f59e0b; margin-left: 6px; }
-          .review-text { font-size: 12px; color: #888; margin-top: 2px; }
+/* waypoints */
+.wpts{display:flex;gap:6px;overflow-x:auto}
+.wpts::-webkit-scrollbar{display:none}
+.wpt{flex-shrink:0;background:#FBF0F0;color:#8C1515;font-size:12px;font-weight:700;padding:6px 12px;border-radius:10px}
+.warr{color:#ddd;font-size:13px;align-self:center;flex-shrink:0}
 
-          /* Book button */
-          .book-bar {
-            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; max-width: 430px;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid #eee; padding: 14px 20px 30px;
-            z-index: 100;
-          }
-          .book-btn {
-            width: 100%; padding: 17px; border-radius: 16px;
-            font-size: 16px; font-weight: 700; color: #fff;
-            background: linear-gradient(135deg,#8C1515,#5E0E0E);
-            box-shadow: 0 6px 20px rgba(140,21,21,0.35);
-            cursor: pointer; border: none; font-family: inherit;
-            transition: opacity 0.15s;
-          }
-          .book-btn:active { opacity: 0.88; }
-          .book-btn-success { background: linear-gradient(135deg,#16a34a,#15803d); box-shadow: 0 6px 20px rgba(22,163,74,0.3); }
-          .book-note { text-align: center; font-size: 11px; color: #aaa; margin-top: 8px; }
+/* reviews */
+.rev{display:flex;gap:12px;margin-bottom:14px}
+.rav{width:32px;height:32px;border-radius:50%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#666;flex-shrink:0}
+.rna{font-size:12px;font-weight:700;color:#222}
+.rst{font-size:11px;color:#f59e0b;margin-left:6px}
+.rtx{font-size:12px;color:#888;margin-top:2px}
 
-          /* Upcoming ride card */
-          .upcoming-inner { display: flex; align-items: center; gap: 12px; }
-          .upcoming-icon { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg,#E8F4FB,#C8E9F7); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-          .status-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-          .status-confirmed { background: #ECFDF5; color: #15803d; border: 1px solid #D1FAE5; }
-          .status-price { background: #f7f7f7; color: #666; border: 1px solid #eee; }
+/* book */
+.bbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid #eee;padding:13px 20px 28px;z-index:100}
+.bbtn{width:100%;padding:17px;border-radius:16px;font-size:16px;font-weight:700;color:#fff;background:linear-gradient(135deg,#8C1515,#5E0E0E);box-shadow:0 6px 20px rgba(140,21,21,0.33);cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,sans-serif;transition:opacity 0.15s}
+.bbtn:active{opacity:0.88}
+.bbtn-ok{background:linear-gradient(135deg,#16a34a,#15803d);box-shadow:0 6px 20px rgba(22,163,74,0.3)}
+.bnote{text-align:center;font-size:11px;color:#aaa;margin-top:8px}
 
-          /* Post form styles */
-          .form-section { background: #fff; padding: 20px; border-bottom: 1px solid #f5f5f5; }
-          .form-label { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
-          .form-input { width: 100%; padding: 14px 16px; border-radius: 14px; border: 1.5px solid #eee; font-size: 15px; font-family: inherit; outline: none; background: #fafafa; transition: border-color 0.15s; }
-          .form-input:focus { border-color: #8C1515; background: #fff; }
-          .quick-routes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-          .quick-route { padding: 8px 14px; border-radius: 20px; background: #FBF0F0; color: #8C1515; font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: inherit; }
-          .shapley-hint { background: #FBF0F0; border-radius: 14px; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; margin-top: 8px; }
-          .submit-btn { width: 100%; padding: 17px; border-radius: 16px; font-size: 16px; font-weight: 700; color: #fff; background: linear-gradient(135deg,#8C1515,#5E0E0E); box-shadow: 0 6px 20px rgba(140,21,21,0.3); cursor: pointer; border: none; font-family: inherit; }
+/* profile */
+.phdr{background:linear-gradient(160deg,#8C1515,#5E0E0E);padding:52px 20px 28px;text-align:center}
+.pavlg{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#fff;margin:0 auto 12px;border:3px solid rgba(255,255,255,0.3)}
+.pnlg{font-size:20px;font-weight:700;color:#fff}
+.pmlg{font-size:13px;color:rgba(255,220,220,0.8);margin-top:4px}
+.srow{display:flex;justify-content:space-around;padding:16px;background:#fff;border-bottom:1px solid #f5f5f5}
+.sit{text-align:center}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bi{background:#f9f9f9;border-radius:14px;padding:13px;display:flex;gap:12px;align-items:center}
+.bic{font-size:22px}
+.bna{font-size:13px;font-weight:700;color:#222}
+.bde{font-size:11px;color:#999;margin-top:2px}
+.vi{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f5f5f5}
+.vch{color:#16a34a;font-weight:700;font-size:16px}
+.vad{color:#8C1515;font-size:13px;font-weight:600;cursor:pointer}
+.hi{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #f5f5f5}
+.hic{width:40px;height:40px;border-radius:12px;background:#FBF0F0;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.hro{font-size:14px;font-weight:600;color:#111}
+.hme{font-size:12px;color:#999;margin-top:2px}
+.hpr{font-size:15px;font-weight:700;color:#8C1515}
 
-          /* Profile page */
-          .profile-header { background: linear-gradient(160deg,#8C1515,#5E0E0E); padding: 56px 20px 28px; text-align: center; }
-          .profile-avatar-lg { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: #fff; margin: 0 auto 12px; border: 3px solid rgba(255,255,255,0.35); }
-          .profile-name-lg { font-size: 20px; font-weight: 700; color: #fff; }
-          .profile-meta-lg { font-size: 13px; color: rgba(255,220,220,0.8); margin-top: 4px; }
-          .stat-row { display: flex; justify-content: space-around; padding: 16px; background: #fff; border-bottom: 1px solid #f5f5f5; }
-          .stat-item { text-align: center; }
-          .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-          .badge-item { background: #f9f9f9; border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: center; }
-          .badge-icon { font-size: 24px; }
-          .badge-name { font-size: 13px; font-weight: 700; color: #222; }
-          .badge-desc { font-size: 11px; color: #999; margin-top: 2px; }
-          .verify-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
-          .verify-icon { font-size: 20px; }
-          .verify-label { font-size: 14px; font-weight: 500; color: #222; flex: 1; }
-          .verify-check { color: #16a34a; font-weight: 700; font-size: 16px; }
-          .verify-add { color: #8C1515; font-size: 13px; font-weight: 600; }
-          .history-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f5f5f5; }
-          .history-icon { width: 40px; height: 40px; border-radius: 12px; background: #FBF0F0; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-          .history-route { font-size: 14px; font-weight: 600; color: #111; }
-          .history-meta { font-size: 12px; color: #999; margin-top: 2px; }
-          .history-price { font-size: 15px; font-weight: 700; color: #8C1515; }
+/* post form */
+.flbl{font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.finp{width:100%;padding:13px 16px;border-radius:14px;border:1.5px solid #eee;font-size:15px;background:#fafafa}
+.finp:focus{border-color:#8C1515;background:#fff;outline:none}
+.qrs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.qr{padding:8px 14px;border-radius:20px;background:#FBF0F0;color:#8C1515;font-size:13px;font-weight:600;cursor:pointer}
+.shint{background:#FBF0F0;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;margin-top:8px}
+.sbmt{width:100%;padding:17px;border-radius:16px;font-size:16px;font-weight:700;color:#fff;background:linear-gradient(135deg,#8C1515,#5E0E0E);box-shadow:0 6px 20px rgba(140,21,21,0.3);cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+</style>
+</head>
+<body>
+<div class="shell">
 
-          .px-5 { padding-left: 20px; padding-right: 20px; }
-          .py-4 { padding-top: 16px; padding-bottom: 16px; }
-          .pt-4 { padding-top: 16px; }
-          .pb-4 { padding-bottom: 16px; }
-          .pb-32 { padding-bottom: 128px; }
-          .mt-2 { margin-top: 8px; }
-          .mt-3 { margin-top: 12px; }
-          .mb-3 { margin-bottom: 12px; }
-          .gap-3 { gap: 12px; }
-          .flex { display: flex; }
-          .flex-col { flex-direction: column; }
-          .flex-1 { flex: 1; }
-          .items-center { align-items: center; }
-          .min-h-screen { min-height: 100vh; }
-          .page { padding-bottom: 100px; }
-        </style><script src="/stanford-rideshare/_next/static/chunks/03~yq9q893hmn.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><div class="app-shell"><div class="page"><div class="header"><div class="header-brand"><div class="header-icon">🚗</div><span class="header-title">Stanford RideShare</span></div><p class="header-sub">Ride smarter with your Stanford community</p></div><div class="profile-bar"><div class="avatar">ED</div><div><div class="profile-name">Eitan Darwish</div><div class="profile-meta">MBA &#x27;27 · ⭐ 4.9 · 12 rides</div></div><a class="link-red" href="/stanford-rideshare/profile/">Profile →</a></div><div style="padding:20px 16px 12px"><a class="cta-primary" style="margin-bottom:12px" href="/stanford-rideshare/rides/"><div class="cta-inner"><div class="cta-icon cta-icon-primary">🔍</div><div><div style="color:#fff;font-weight:700;font-size:17px">Find a Ride</div><div style="color:rgba(255,220,220,0.8);font-size:13px;margin-top:2px">Browse rides from Stanford</div></div><span class="cta-arrow" style="color:rgba(255,255,255,0.5)">›</span></div></a><a class="cta-secondary" style="margin-top:10px" href="/stanford-rideshare/post/"><div class="cta-inner"><div class="cta-icon cta-icon-secondary">🚘</div><div><div style="color:#8C1515;font-weight:700;font-size:17px">Offer a Ride</div><div style="color:#888;font-size:13px;margin-top:2px">Share your trip, split the cost</div></div><span class="cta-arrow" style="color:#C08080">›</span></div></a></div><div style="padding:4px 16px 16px"><div class="section-label">Your Upcoming Ride</div><div class="card card-p"><div class="upcoming-inner"><div class="upcoming-icon">✈️</div><div style="flex:1"><div style="font-weight:700;font-size:14px;color:#111">Stanford → SFO</div><div style="font-size:12px;color:#999;margin-top:2px">Tomorrow · 6:30 AM · Sarah K.</div><div style="display:flex;gap:6px;margin-top:8px"><span class="status-badge status-confirmed">Confirmed</span><span class="status-badge status-price">$18/seat</span></div></div><div style="width:32px;height:32px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:14px">›</div></div></div></div><div style="padding:0 16px 16px"><div class="stats-strip"><div><div class="stats-num">247</div><div class="stats-label">Active riders</div></div><div class="stats-divider"></div><div><div class="stats-num">38</div><div class="stats-label">Rides today</div></div><div class="stats-divider"></div><div><div class="stats-num">$12</div><div class="stats-label">Avg cost</div></div></div></div><div style="padding:0 16px 24px"><div class="section-label">Popular Routes</div><div class="chips-row"><a class="chip" href="/stanford-rideshare/rides/"><span>✈️</span><span>SFO</span></a><a class="chip" href="/stanford-rideshare/rides/"><span>🚉</span><span>Caltrain</span></a><a class="chip" href="/stanford-rideshare/rides/"><span>🌉</span><span>SF Downtown</span></a><a class="chip" href="/stanford-rideshare/rides/"><span>✈️</span><span>SJC</span></a><a class="chip" href="/stanford-rideshare/rides/"><span>🌁</span><span>Oakland</span></a></div></div><div class="bottom-nav"><a class="nav-item" href="/stanford-rideshare/"><span class="nav-icon">🏠</span><span class="nav-label nav-label-active">Home</span></a><a class="nav-item" href="/stanford-rideshare/rides/"><span class="nav-icon">🔍</span><span class="nav-label">Find</span></a><a class="nav-item" href="/stanford-rideshare/post/"><span class="nav-icon">➕</span><span class="nav-label">Post</span></a><a class="nav-item" href="/stanford-rideshare/profile/"><span class="nav-icon">👤</span><span class="nav-label">Profile</span></a></div></div><!--$--><!--/$--></div><script src="/stanford-rideshare/_next/static/chunks/15xrurgzs99gv.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n6:I[68027,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"default\",1]\n2:T46f0,"])</script><script>self.__next_f.push([1,"\n          *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\n          html, body { height: 100%; }\n          body {\n            background: #EBEBEB;\n            font-family: -apple-system, BlinkMacSystemFont, \"SF Pro Text\", \"Helvetica Neue\", Arial, sans-serif;\n            -webkit-font-smoothing: antialiased;\n            color: #111;\n          }\n          a { text-decoration: none; color: inherit; }\n          button { border: none; cursor: pointer; font-family: inherit; }\n          input { font-family: inherit; }\n          * { -webkit-tap-highlight-color: transparent; }\n\n          .app-shell {\n            max-width: 430px;\n            margin: 0 auto;\n            min-height: 100vh;\n            background: #fff;\n            position: relative;\n            box-shadow: 0 0 40px rgba(0,0,0,0.12);\n          }\n\n          /* Header */\n          .header {\n            background: linear-gradient(160deg, #8C1515 0%, #5E0E0E 100%);\n            padding: 56px 20px 24px;\n          }\n          .header-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }\n          .header-icon {\n            width: 32px; height: 32px; border-radius: 50%;\n            background: rgba(255,255,255,0.18);\n            display: flex; align-items: center; justify-content: center;\n            font-size: 15px;\n          }\n          .header-title { color: #fff; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }\n          .header-sub { color: rgba(255,220,220,0.8); font-size: 13px; }\n\n          /* Profile bar */\n          .profile-bar {\n            display: flex; align-items: center; gap: 12px;\n            background: #fff; padding: 12px 20px;\n            border-bottom: 1px solid #f0f0f0;\n            box-shadow: 0 1px 4px rgba(0,0,0,0.05);\n          }\n          .avatar {\n            width: 38px; height: 38px; border-radius: 50%;\n            background: linear-gradient(135deg, #8C1515, #A52020);\n            display: flex; align-items: center; justify-content: center;\n            color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0;\n          }\n          .avatar-lg {\n            width: 54px; height: 54px; border-radius: 50%;\n            display: flex; align-items: center; justify-content: center;\n            color: #fff; font-weight: 700; font-size: 17px; flex-shrink: 0;\n          }\n          .profile-name { font-size: 14px; font-weight: 600; color: #111; }\n          .profile-meta { font-size: 12px; color: #999; margin-top: 1px; }\n          .link-red { color: #8C1515; font-size: 12px; font-weight: 600; margin-left: auto; }\n\n          /* Cards */\n          .card {\n            background: #fff; border-radius: 18px;\n            border: 1px solid #f0f0f0;\n            box-shadow: 0 2px 8px rgba(0,0,0,0.06);\n            overflow: hidden;\n          }\n          .card-p { padding: 16px; }\n\n          /* CTA buttons */\n          .cta-primary {\n            display: block; border-radius: 20px; padding: 18px 20px;\n            background: linear-gradient(135deg, #8C1515 0%, #5E0E0E 100%);\n            box-shadow: 0 6px 20px rgba(140,21,21,0.35);\n            color: #fff; text-decoration: none;\n            transition: opacity 0.15s;\n          }\n          .cta-primary:active { opacity: 0.88; }\n          .cta-secondary {\n            display: block; border-radius: 20px; padding: 18px 20px;\n            background: #fff;\n            border: 1.5px solid #8C1515;\n            box-shadow: 0 2px 10px rgba(140,21,21,0.1);\n            text-decoration: none;\n            transition: opacity 0.15s;\n          }\n          .cta-secondary:active { opacity: 0.88; }\n          .cta-inner { display: flex; align-items: center; gap: 14px; }\n          .cta-icon {\n            width: 48px; height: 48px; border-radius: 14px;\n            display: flex; align-items: center; justify-content: center;\n            font-size: 22px; flex-shrink: 0;\n          }\n          .cta-icon-primary { background: rgba(255,255,255,0.15); }\n          .cta-icon-secondary { background: #FBF0F0; }\n          .cta-arrow { margin-left: auto; font-size: 22px; }\n\n          /* Section label */\n          .section-label {\n            font-size: 11px; font-weight: 700; color: #aaa;\n            text-transform: uppercase; letter-spacing: 0.08em;\n            margin-bottom: 10px;\n          }\n\n          /* Stats strip */\n          .stats-strip {\n            background: #FBF0F0; border-radius: 18px;\n            padding: 16px; display: flex; justify-content: space-around; text-align: center;\n          }\n          .stats-num { font-size: 24px; font-weight: 800; color: #8C1515; }\n          .stats-label { font-size: 11px; color: #888; margin-top: 2px; }\n          .stats-divider { width: 1px; background: #E0BABA; }\n\n          /* Route chips */\n          .chips-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }\n          .chips-row::-webkit-scrollbar { display: none; }\n          .chip {\n            flex-shrink: 0; background: #fff; border: 1px solid #eee;\n            border-radius: 14px; padding: 8px 14px;\n            display: flex; align-items: center; gap: 6px;\n            font-size: 13px; color: #333; font-weight: 500;\n            box-shadow: 0 1px 4px rgba(0,0,0,0.06);\n            text-decoration: none;\n            transition: opacity 0.15s;\n          }\n          .chip:active { opacity: 0.75; }\n\n          /* Bottom nav */\n          .bottom-nav {\n            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);\n            width: 100%; max-width: 430px;\n            background: rgba(255,255,255,0.92);\n            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);\n            border-top: 1px solid #e8e8e8;\n            display: flex; justify-content: space-around;\n            padding: 8px 0 20px;\n            z-index: 100;\n          }\n          .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 16px; text-decoration: none; }\n          .nav-icon { font-size: 20px; }\n          .nav-label { font-size: 10px; font-weight: 600; color: #aaa; }\n          .nav-label-active { color: #8C1515; }\n\n          /* Ride list */\n          .ride-card {\n            background: #fff; border-radius: 18px;\n            border: 1px solid #f0f0f0;\n            box-shadow: 0 2px 8px rgba(0,0,0,0.06);\n            padding: 16px; text-decoration: none; display: block;\n            transition: opacity 0.15s;\n          }\n          .ride-card:active { opacity: 0.88; }\n          .ride-driver-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }\n          .driver-info { flex: 1; min-width: 0; }\n          .driver-name-row { display: flex; align-items: center; gap: 6px; }\n          .driver-name { font-size: 14px; font-weight: 700; color: #111; }\n          .verified-badge {\n            font-size: 11px; font-weight: 700; padding: 2px 6px;\n            border-radius: 20px; background: #EAF3FF; color: #1a6cc4;\n          }\n          .driver-meta { font-size: 12px; color: #999; margin-top: 2px; }\n          .price-col { text-align: right; flex-shrink: 0; }\n          .price-big { font-size: 22px; font-weight: 800; color: #8C1515; }\n          .price-label { font-size: 11px; color: #aaa; }\n\n          .route-line { display: flex; gap: 12px; margin-bottom: 12px; }\n          .route-dots { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }\n          .dot-green { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }\n          .dot-red { width: 10px; height: 10px; border-radius: 50%; background: #8C1515; flex-shrink: 0; }\n          .route-line-v { width: 2px; flex: 1; background: #e5e5e5; border-radius: 2px; margin: 3px 0; min-height: 20px; }\n          .route-texts { display: flex; flex-direction: column; justify-content: space-between; flex: 1; gap: 10px; }\n          .route-from { font-size: 13px; color: #666; }\n          .route-to { font-size: 13px; font-weight: 600; color: #111; }\n\n          .ride-footer { display: flex; align-items: center; gap: 6px; }\n          .ride-meta { font-size: 12px; color: #999; }\n          .ride-tags { margin-left: auto; display: flex; gap: 6px; }\n          .tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; background: #FBF0F0; color: #8C1515; }\n\n          /* Search bar in header */\n          .search-bar {\n            background: rgba(255,255,255,0.18); border-radius: 14px;\n            padding: 12px 16px; display: flex; align-items: center; gap: 10px;\n            border: 1px solid rgba(255,255,255,0.25); margin-top: 14px;\n          }\n          .search-input {\n            background: transparent; border: none; outline: none;\n            color: #fff; font-size: 14px; flex: 1;\n          }\n          .search-input::placeholder { color: rgba(255,255,255,0.5); }\n\n          /* Filter pills */\n          .filters { display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px; background: #fff; border-bottom: 1px solid #f0f0f0; }\n          .filters::-webkit-scrollbar { display: none; }\n          .filter-pill {\n            flex-shrink: 0; padding: 7px 16px; border-radius: 20px;\n            font-size: 13px; font-weight: 600; transition: all 0.15s; cursor: pointer;\n          }\n          .filter-pill-inactive { background: #f3f3f3; color: #666; }\n          .filter-pill-active { background: linear-gradient(135deg,#8C1515,#5E0E0E); color: #fff; }\n\n          /* Back button */\n          .back-btn {\n            width: 36px; height: 36px; border-radius: 50%;\n            background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.25);\n            display: flex; align-items: center; justify-content: center;\n            color: #fff; font-size: 18px; text-decoration: none; flex-shrink: 0;\n          }\n\n          /* Detail map */\n          .map-placeholder {\n            height: 200px; position: relative;\n            background: linear-gradient(135deg,#dfe6f0,#c8d5e8);\n            display: flex; align-items: center; justify-content: center;\n          }\n          .map-pill {\n            background: #fff; border-radius: 14px; padding: 10px 16px;\n            box-shadow: 0 4px 16px rgba(0,0,0,0.14); z-index: 2;\n            display: flex; align-items: center; gap: 8px; font-size: 13px;\n          }\n          .map-back {\n            position: absolute; top: 56px; left: 16px;\n            width: 38px; height: 38px; border-radius: 50%;\n            background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15);\n            display: flex; align-items: center; justify-content: center;\n            color: #444; font-size: 18px; text-decoration: none; z-index: 3;\n          }\n\n          /* Detail sections */\n          .detail-section { background: #fff; padding: 18px 20px; border-bottom: 1px solid #f5f5f5; }\n          .detail-label { font-size: 11px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }\n\n          .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 14px; }\n          .stat-box { border-radius: 14px; padding: 12px; text-align: center; }\n          .stat-box-red { background: #FBF0F0; }\n          .stat-box-gray { background: #f7f7f7; }\n          .stat-val-red { font-size: 20px; font-weight: 800; color: #8C1515; }\n          .stat-val { font-size: 20px; font-weight: 800; color: #222; }\n          .stat-sub { font-size: 11px; color: #999; margin-top: 2px; }\n\n          /* Waypoints */\n          .waypoints { display: flex; gap: 6px; overflow-x: auto; }\n          .waypoints::-webkit-scrollbar { display: none; }\n          .waypoint { flex-shrink: 0; background: #FBF0F0; color: #8C1515; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 10px; }\n          .waypoint-arrow { color: #ddd; font-size: 13px; align-self: center; }\n\n          /* Reviews */\n          .review { display: flex; gap: 12px; margin-bottom: 14px; }\n          .review-avatar { width: 32px; height: 32px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #666; flex-shrink: 0; }\n          .review-name { font-size: 12px; font-weight: 700; color: #222; }\n          .review-stars { font-size: 11px; color: #f59e0b; margin-left: 6px; }\n          .review-text { font-size: 12px; color: #888; margin-top: 2px; }\n\n          /* Book button */\n          .book-bar {\n            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);\n            width: 100%; max-width: 430px;\n            background: rgba(255,255,255,0.95);\n            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);\n            border-top: 1px solid #eee; padding: 14px 20px 30px;\n            z-index: 100;\n          }\n          .book-btn {\n            width: 100%; padding: 17px; border-radius: 16px;\n            font-size: 16px; font-weight: 700; color: #fff;\n            background: linear-gradient(135deg,#8C1515,#5E0E0E);\n            box-shadow: 0 6px 20px rgba(140,21,21,0.35);\n            cursor: pointer; border: none; font-family: inherit;\n            transition: opacity 0.15s;\n          }\n          .book-btn:active { opacity: 0.88; }\n          .book-btn-success { background: linear-gradient(135deg,#16a34a,#15803d); box-shadow: 0 6px 20px rgba(22,163,74,0.3); }\n          .book-note { text-align: center; font-size: 11px; color: #aaa; margin-top: 8px; }\n\n          /* Upcoming ride card */\n          .upcoming-inner { display: flex; align-items: center; gap: 12px; }\n          .upcoming-icon { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg,#E8F4FB,#C8E9F7); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }\n          .status-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }\n          .status-confirmed { background: #ECFDF5; color: #15803d; border: 1px solid #D1FAE5; }\n          .status-price { background: #f7f7f7; color: #666; border: 1px solid #eee; }\n\n          /* Post form styles */\n          .form-section { background: #fff; padding: 20px; border-bottom: 1px solid #f5f5f5; }\n          .form-label { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }\n          .form-input { width: 100%; padding: 14px 16px; border-radius: 14px; border: 1.5px solid #eee; font-size: 15px; font-family: inherit; outline: none; background: #fafafa; transition: border-color 0.15s; }\n          .form-input:focus { border-color: #8C1515; background: #fff; }\n          .quick-routes { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }\n          .quick-route { padding: 8px 14px; border-radius: 20px; background: #FBF0F0; color: #8C1515; font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: inherit; }\n          .shapley-hint { background: #FBF0F0; border-radius: 14px; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; margin-top: 8px; }\n          .submit-btn { width: 100%; padding: 17px; border-radius: 16px; font-size: 16px; font-weight: 700; color: #fff; background: linear-gradient(135deg,#8C1515,#5E0E0E); box-shadow: 0 6px 20px rgba(140,21,21,0.3); cursor: pointer; border: none; font-family: inherit; }\n\n          /* Profile page */\n          .profile-header { background: linear-gradient(160deg,#8C1515,#5E0E0E); padding: 56px 20px 28px; text-align: center; }\n          .profile-avatar-lg { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; color: #fff; margin: 0 auto 12px; border: 3px solid rgba(255,255,255,0.35); }\n          .profile-name-lg { font-size: 20px; font-weight: 700; color: #fff; }\n          .profile-meta-lg { font-size: 13px; color: rgba(255,220,220,0.8); margin-top: 4px; }\n          .stat-row { display: flex; justify-content: space-around; padding: 16px; background: #fff; border-bottom: 1px solid #f5f5f5; }\n          .stat-item { text-align: center; }\n          .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }\n          .badge-item { background: #f9f9f9; border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: center; }\n          .badge-icon { font-size: 24px; }\n          .badge-name { font-size: 13px; font-weight: 700; color: #222; }\n          .badge-desc { font-size: 11px; color: #999; margin-top: 2px; }\n          .verify-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }\n          .verify-icon { font-size: 20px; }\n          .verify-label { font-size: 14px; font-weight: 500; color: #222; flex: 1; }\n          .verify-check { color: #16a34a; font-weight: 700; font-size: 16px; }\n          .verify-add { color: #8C1515; font-size: 13px; font-weight: 600; }\n          .history-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f5f5f5; }\n          .history-icon { width: 40px; height: 40px; border-radius: 12px; background: #FBF0F0; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }\n          .history-route { font-size: 14px; font-weight: 600; color: #111; }\n          .history-meta { font-size: 12px; color: #999; margin-top: 2px; }\n          .history-price { font-size: 15px; font-weight: 700; color: #8C1515; }\n\n          .px-5 { padding-left: 20px; padding-right: 20px; }\n          .py-4 { padding-top: 16px; padding-bottom: 16px; }\n          .pt-4 { padding-top: 16px; }\n          .pb-4 { padding-bottom: 16px; }\n          .pb-32 { padding-bottom: 128px; }\n          .mt-2 { margin-top: 8px; }\n          .mt-3 { margin-top: 12px; }\n          .mb-3 { margin-bottom: 12px; }\n          .gap-3 { gap: 12px; }\n          .flex { display: flex; }\n          .flex-col { flex-direction: column; }\n          .flex-1 { flex: 1; }\n          .items-center { align-items: center; }\n          .min-h-screen { min-height: 100vh; }\n          .page { padding-bottom: 100px; }\n        "])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"c\":[\"\",\"\"],\"q\":\"\",\"i\":false,\"f\":[[[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",16],[[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"script\",\"script-0\",{\"src\":\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"async\":true,\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-1\",{\"src\":\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[[\"$\",\"head\",null,{\"children\":[[\"$\",\"meta\",null,{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1, maximum-scale=1\"}],[\"$\",\"style\",null,{\"children\":\"$2\"}]]}],\"$L3\"]}]]}],{\"children\":[\"$L4\",{},null,false,null]},null,false,null],\"$L5\",false]],\"m\":\"$undefined\",\"G\":[\"$6\",[]],\"S\":true,\"h\":null,\"s\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"ynMVDF4mABkNK3BJvN9Rd\"}\n"])</script><script>self.__next_f.push([1,"7:I[39756,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"default\"]\n8:I[37457,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"default\"]\n9:I[47257,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"ClientPageRoot\"]\na:I[31713,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\",\"/stanford-rideshare/_next/static/chunks/0ubjkk.qqwbpn.js\"],\"default\"]\nd:I[97367,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"OutletBoundary\"]\ne:\"$Sreact.suspense\"\n10:I[97367,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"ViewportBoundary\"]\n12:I[97367,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"MetadataBoundary\"]\n"])</script><script>self.__next_f.push([1,"3:[\"$\",\"body\",null,{\"children\":[\"$\",\"div\",null,{\"className\":\"app-shell\",\"children\":[\"$\",\"$L7\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]\n"])</script><script>self.__next_f.push([1,"4:[\"$\",\"$1\",\"c\",{\"children\":[[\"$\",\"$L9\",null,{\"Component\":\"$a\",\"serverProvidedParams\":{\"searchParams\":{},\"params\":{},\"promises\":[\"$@b\",\"$@c\"]}}],[[\"$\",\"script\",\"script-0\",{\"src\":\"/stanford-rideshare/_next/static/chunks/0ubjkk.qqwbpn.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@f\"}]}]]}]\n5:[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L10\",null,{\"children\":\"$L11\"}],[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$L12\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L13\"}]}]}],null]}]\n"])</script><script>self.__next_f.push([1,"b:{}\nc:\"$4:props:children:0:props:serverProvidedParams:params\"\n"])</script><script>self.__next_f.push([1,"11:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n"])</script><script>self.__next_f.push([1,"14:I[27201,[\"/stanford-rideshare/_next/static/chunks/01xlw8hd842-c.js\",\"/stanford-rideshare/_next/static/chunks/0d3shmwh5_nmn.js\"],\"IconMark\"]\nf:null\n13:[[\"$\",\"title\",\"0\",{\"children\":\"Stanford RideShare\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Ride with your Stanford community\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/stanford-rideshare/favicon.ico?favicon.0x3dzn~oxb6tn.ico\",\"sizes\":\"256x256\",\"type\":\"image/x-icon\"}],[\"$\",\"$L14\",\"3\",{}]]\n"])</script></body></html>
+<!-- HOME -->
+<div id="s-home" class="screen active">
+  <div class="hdr">
+    <div class="hdr-brand">
+      <div class="hdr-icon">🚗</div>
+      <span class="hdr-title">Stanford RideShare</span>
+    </div>
+    <p class="hdr-sub">Ride smarter with your Stanford community</p>
+  </div>
+  <div class="pbar">
+    <div class="av">ED</div>
+    <div>
+      <div class="pname">Eitan Darwish</div>
+      <div class="pmeta">MBA '27 · ⭐ 4.9 · 12 rides</div>
+    </div>
+    <span class="lnk-red" onclick="go('profile')">Profile →</span>
+  </div>
+  <div style="padding:18px 16px 12px">
+    <div class="cta cta-p" onclick="go('rides')">
+      <div class="cta-in">
+        <div class="cta-ic cta-ic-p">🔍</div>
+        <div>
+          <div style="color:#fff;font-weight:700;font-size:17px">Find a Ride</div>
+          <div style="color:rgba(255,220,220,0.8);font-size:13px;margin-top:2px">Browse rides from Stanford</div>
+        </div>
+        <span class="cta-arr" style="color:rgba(255,255,255,0.5)">›</span>
+      </div>
+    </div>
+    <div class="cta cta-s" onclick="go('post')">
+      <div class="cta-in">
+        <div class="cta-ic cta-ic-s">🚘</div>
+        <div>
+          <div style="color:#8C1515;font-weight:700;font-size:17px">Offer a Ride</div>
+          <div style="color:#888;font-size:13px;margin-top:2px">Share your trip, split the cost</div>
+        </div>
+        <span class="cta-arr" style="color:#C08080">›</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 16px 14px">
+    <div class="slbl">Your Upcoming Ride</div>
+    <div class="card">
+      <div class="upc-in">
+        <div class="upc-ic">✈️</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:14px;color:#111">Stanford → SFO</div>
+          <div style="font-size:12px;color:#999;margin-top:2px">Tomorrow · 6:30 AM · Sarah K.</div>
+          <div style="display:flex;gap:6px;margin-top:8px">
+            <span class="badge b-green">Confirmed</span>
+            <span class="badge b-gray">$18/seat</span>
+          </div>
+        </div>
+        <div style="width:30px;height:30px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#aaa">›</div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:0 16px 14px">
+    <div class="stats">
+      <div><div class="snum">247</div><div class="slb">Active riders</div></div>
+      <div class="sdiv"></div>
+      <div><div class="snum">38</div><div class="slb">Rides today</div></div>
+      <div class="sdiv"></div>
+      <div><div class="snum">$12</div><div class="slb">Avg cost</div></div>
+    </div>
+  </div>
+  <div style="padding:0 16px 24px">
+    <div class="slbl">Popular Routes</div>
+    <div class="chips">
+      <div class="chip" onclick="go('rides')"><span>✈️</span><span>SFO</span></div>
+      <div class="chip" onclick="go('rides')"><span>🚉</span><span>Caltrain</span></div>
+      <div class="chip" onclick="go('rides')"><span>🌉</span><span>SF Downtown</span></div>
+      <div class="chip" onclick="go('rides')"><span>✈️</span><span>SJC</span></div>
+      <div class="chip" onclick="go('rides')"><span>🌁</span><span>Oakland</span></div>
+    </div>
+  </div>
+  <div class="bnav">
+    <div class="ni" onclick="go('home')"><span class="nic">🏠</span><span class="nlb nlb-a">Home</span></div>
+    <div class="ni" onclick="go('rides')"><span class="nic">🔍</span><span class="nlb">Find</span></div>
+    <div class="ni" onclick="go('post')"><span class="nic">➕</span><span class="nlb">Post</span></div>
+    <div class="ni" onclick="go('profile')"><span class="nic">👤</span><span class="nlb">Profile</span></div>
+  </div>
+</div>
+
+<!-- RIDES -->
+<div id="s-rides" class="screen">
+  <div class="hdr">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:13px">
+      <div class="back" onclick="go('home')">←</div>
+      <span class="hdr-title">Available Rides</span>
+    </div>
+    <div class="srch">
+      <span style="color:rgba(255,255,255,0.5)">🔍</span>
+      <input class="sinp" type="text" placeholder="Where are you going?">
+    </div>
+  </div>
+  <div class="flts" id="flts">
+    <div class="fp fp-on" onclick="filter(this,'All')">All</div>
+    <div class="fp fp-off" onclick="filter(this,'Airport')">Airport</div>
+    <div class="fp fp-off" onclick="filter(this,'Caltrain')">Caltrain</div>
+    <div class="fp fp-off" onclick="filter(this,'SF')">SF</div>
+    <div class="fp fp-off" onclick="filter(this,'SJC')">SJC</div>
+    <div class="fp fp-off" onclick="filter(this,'OAK')">OAK</div>
+  </div>
+  <div style="padding:14px 16px 8px">
+    <div class="slbl" id="rc">5 rides available</div>
+    <div id="ride-list"></div>
+  </div>
+  <div class="bnav">
+    <div class="ni" onclick="go('home')"><span class="nic">🏠</span><span class="nlb">Home</span></div>
+    <div class="ni" onclick="go('rides')"><span class="nic">🔍</span><span class="nlb nlb-a">Find</span></div>
+    <div class="ni" onclick="go('post')"><span class="nic">➕</span><span class="nlb">Post</span></div>
+    <div class="ni" onclick="go('profile')"><span class="nic">👤</span><span class="nlb">Profile</span></div>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div id="s-detail" class="screen" style="padding-bottom:120px">
+  <div class="mapp">
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:0.08">🗺️</div>
+    <div class="mpill" id="d-route"></div>
+    <div class="mback" onclick="go('rides')">←</div>
+  </div>
+  <div class="ds" id="d-driver"></div>
+  <div class="ds" id="d-trip"></div>
+  <div class="ds" id="d-wpts"></div>
+  <div class="ds" style="border-bottom:none" id="d-revs"></div>
+  <div class="bbar">
+    <button class="bbtn" id="d-btn" onclick="bookRide()"></button>
+    <div class="bnote" id="d-note">No charge until driver confirms</div>
+  </div>
+</div>
+
+<!-- POST -->
+<div id="s-post" class="screen">
+  <div class="hdr">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="back" onclick="go('home')">←</div>
+      <span class="hdr-title">Post a Ride</span>
+    </div>
+  </div>
+  <div id="post-form">
+    <div class="ds">
+      <div class="dlbl">Quick-fill popular route</div>
+      <div class="qrs">
+        <div class="qr" onclick="fillRoute('Stanford Campus','SFO Terminal 2')">→ SFO</div>
+        <div class="qr" onclick="fillRoute('GSB Campus','Caltrain PA Station')">→ Caltrain</div>
+        <div class="qr" onclick="fillRoute('Stanford Campus','SF Downtown')">→ SF</div>
+        <div class="qr" onclick="fillRoute('Escondido Village','SJC Airport')">→ SJC</div>
+        <div class="qr" onclick="fillRoute('Escondido Village','Oakland Airport')">→ OAK</div>
+      </div>
+      <div class="flbl">From</div>
+      <input class="finp" id="p-from" type="text" placeholder="e.g. Stanford Campus" style="margin-bottom:10px">
+      <div class="flbl">To</div>
+      <input class="finp" id="p-to" type="text" placeholder="e.g. SFO Terminal 2">
+    </div>
+    <div class="ds">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+        <div>
+          <div class="flbl">Date</div>
+          <input class="finp" type="date">
+        </div>
+        <div>
+          <div class="flbl">Time</div>
+          <input class="finp" type="time">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div>
+          <div class="flbl">Seats available</div>
+          <select class="finp" style="appearance:none">
+            <option>1</option><option>2</option><option selected>3</option><option>4</option>
+          </select>
+        </div>
+        <div>
+          <div class="flbl">Price / seat ($)</div>
+          <input class="finp" id="p-price" type="number" placeholder="e.g. 20" oninput="updateHint()">
+        </div>
+      </div>
+      <div class="shint" id="shint" style="display:none">
+        <span style="font-size:18px">💡</span>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8C1515">Shapley fair split</div>
+          <div id="shint-txt" style="font-size:12px;color:#888;margin-top:2px"></div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:20px 16px">
+      <button class="sbmt" onclick="submitPost()">Post Ride</button>
+    </div>
+  </div>
+  <div id="post-confirm" style="display:none;padding:60px 32px;text-align:center">
+    <div style="font-size:64px;margin-bottom:20px">🎉</div>
+    <div style="font-size:22px;font-weight:800;color:#111;margin-bottom:8px">Ride Posted!</div>
+    <div style="font-size:14px;color:#888;margin-bottom:32px">Your ride is now visible to Stanford students.</div>
+    <button class="sbmt" onclick="go('home')">Back to Home</button>
+  </div>
+  <div class="bnav">
+    <div class="ni" onclick="go('home')"><span class="nic">🏠</span><span class="nlb">Home</span></div>
+    <div class="ni" onclick="go('rides')"><span class="nic">🔍</span><span class="nlb">Find</span></div>
+    <div class="ni" onclick="go('post')"><span class="nic">➕</span><span class="nlb nlb-a">Post</span></div>
+    <div class="ni" onclick="go('profile')"><span class="nic">👤</span><span class="nlb">Profile</span></div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div id="s-profile" class="screen">
+  <div class="phdr">
+    <div class="pavlg">ED</div>
+    <div class="pnlg">Eitan Darwish</div>
+    <div class="pmlg">MBA '27 · Stanford Graduate School of Business</div>
+  </div>
+  <div class="srow">
+    <div class="sit"><div style="font-size:22px;font-weight:800;color:#111">8</div><div style="font-size:11px;color:#888;margin-top:2px">Rides taken</div></div>
+    <div class="sit"><div style="font-size:22px;font-weight:800;color:#111">4</div><div style="font-size:11px;color:#888;margin-top:2px">Rides given</div></div>
+    <div class="sit"><div style="font-size:22px;font-weight:800;color:#8C1515">$96</div><div style="font-size:11px;color:#888;margin-top:2px">Saved</div></div>
+    <div class="sit"><div style="font-size:22px;font-weight:800;color:#f59e0b">⭐ 4.9</div><div style="font-size:11px;color:#888;margin-top:2px">Rating</div></div>
+  </div>
+  <div class="ds">
+    <div class="dlbl">Badges</div>
+    <div class="bgrid">
+      <div class="bi"><span class="bic">🎖️</span><div><div class="bna">Early Adopter</div><div class="bde">First 100 members</div></div></div>
+      <div class="bi"><span class="bic">⭐</span><div><div class="bna">Top Rated</div><div class="bde">4.9+ rating</div></div></div>
+      <div class="bi"><span class="bic">✈️</span><div><div class="bna">Frequent Flyer</div><div class="bde">5+ airport rides</div></div></div>
+      <div class="bi"><span class="bic">🏅</span><div><div class="bna">10 Rides</div><div class="bde">Milestone reached</div></div></div>
+    </div>
+  </div>
+  <div class="ds">
+    <div class="dlbl">Verification</div>
+    <div class="vi"><span class="vic">✉️</span><span style="font-size:14px;font-weight:500;color:#222;flex:1">Stanford Email</span><span class="vch">✓</span></div>
+    <div class="vi"><span class="vic">📱</span><span style="font-size:14px;font-weight:500;color:#222;flex:1">Phone Number</span><span class="vch">✓</span></div>
+    <div class="vi"><span class="vic">🪪</span><span style="font-size:14px;font-weight:500;color:#222;flex:1">Stanford ID</span><span class="vch">✓</span></div>
+    <div class="vi" style="border-bottom:none"><span class="vic">🚗</span><span style="font-size:14px;font-weight:500;color:#222;flex:1">Driver License</span><span class="vad">+ Add</span></div>
+  </div>
+  <div class="ds" style="border-bottom:none">
+    <div class="dlbl">Recent Rides</div>
+    <div class="hi"><div class="hic">✈️</div><div style="flex:1"><div class="hro">Stanford → SFO</div><div class="hme">Apr 22 · Sarah K.</div></div><div class="hpr">$22</div></div>
+    <div class="hi"><div class="hic">🚉</div><div style="flex:1"><div class="hro">GSB → Caltrain</div><div class="hme">Apr 18 · Marcus T.</div></div><div class="hpr">$8</div></div>
+    <div class="hi" style="border-bottom:none"><div class="hic">🌉</div><div style="flex:1"><div class="hro">Stanford → SF</div><div class="hme">Apr 14 · Priya N.</div></div><div class="hpr">$28</div></div>
+  </div>
+  <div class="bnav">
+    <div class="ni" onclick="go('home')"><span class="nic">🏠</span><span class="nlb">Home</span></div>
+    <div class="ni" onclick="go('rides')"><span class="nic">🔍</span><span class="nlb">Find</span></div>
+    <div class="ni" onclick="go('post')"><span class="nic">➕</span><span class="nlb">Post</span></div>
+    <div class="ni" onclick="go('profile')"><span class="nic">👤</span><span class="nlb nlb-a">Profile</span></div>
+  </div>
+</div>
+
+</div><!-- /shell -->
+
+<script>
+const RIDES = [
+  {id:0,driver:"Sarah K.",ini:"SK",rating:4.9,rides:34,from:"Stanford Campus",to:"SFO Terminal 2",date:"Today",time:"4:00 PM",seats:2,price:22,car:"Toyota Prius · Silver · 4XBR291",dept:"Computer Science PhD",bio:"CS PhD student. I make this run to SFO every other week — always on time.",grad:"linear-gradient(135deg,#8C1515,#6B1010)",tags:["Airport","Direct"],verified:true,wpts:["White Plaza","Embarcadero Rd","101-N","SFO T2"],revs:[{n:"Alex M.",t:"Super reliable, great driver!",s:5},{n:"Priya N.",t:"Comfortable and safe drive.",s:5}]},
+  {id:1,driver:"Marcus T.",ini:"MT",rating:4.8,rides:21,from:"GSB Campus",to:"Caltrain PA Station",date:"Today",time:"5:15 PM",seats:3,price:8,car:"Honda Civic · Blue · 7KZP443",dept:"MBA '26",bio:"MBA '26. Run this route every weekday evening.",grad:"linear-gradient(135deg,#1a56a0,#0e3c78)",tags:["Caltrain","Quick"],verified:true,wpts:["Knight Mgmt","Campus Dr","El Camino","Caltrain"],revs:[{n:"Sarah K.",t:"Friendly and quick drop-off.",s:5},{n:"Noah A.",t:"Perfect timing for the Caltrain.",s:4}]},
+  {id:2,driver:"Priya N.",ini:"PN",rating:5.0,rides:47,from:"Stanford Main Quad",to:"SF Downtown",date:"Tomorrow",time:"10:00 AM",seats:1,price:28,car:"Tesla Model 3 · White · PRYAN1",dept:"Law School JD",bio:"JD student going to SF weekly. Tesla, smooth ride, great playlist.",grad:"linear-gradient(135deg,#1a7a4a,#0f5434)",tags:["SF","EV"],verified:true,wpts:["Main Quad","Palm Dr","101-N","Union Square"],revs:[{n:"Eitan D.",t:"Best ride ever, 10/10!",s:5},{n:"Chris W.",t:"Clean car, amazing driver.",s:5}]},
+  {id:3,driver:"James W.",ini:"JW",rating:4.7,rides:15,from:"Stanford Ave & Escondido",to:"SJC Airport",date:"Tomorrow",time:"7:30 AM",seats:2,price:19,car:"Subaru Outback · Gray · 8MNP102",dept:"Engineering PhD",bio:"Eng PhD, commuting to SJC regularly. Reliable and on time.",grad:"linear-gradient(135deg,#7a5c1a,#5c440f)",tags:["Airport","SJC"],verified:false,wpts:["Escondido Village","El Camino","101-S","SJC T-B"],revs:[{n:"Leila A.",t:"Smooth ride, great communication.",s:5}]},
+  {id:4,driver:"Leila A.",ini:"LA",rating:4.9,rides:29,from:"Escondido Village",to:"Oakland Airport",date:"Fri Apr 30",time:"2:00 PM",seats:3,price:25,car:"Mazda CX-5 · Red · 3RQW554",dept:"MBA '27",bio:"MBA '27. Making the OAK run for the long weekend.",grad:"linear-gradient(135deg,#6e1a7a,#4e0f5c)",tags:["Airport","OAK"],verified:true,wpts:["Escondido Village","Campus Dr","880-N","OAK T-1"],revs:[{n:"Marcus T.",t:"Great driver, very punctual!",s:5},{n:"Sarah K.",t:"Would ride again, 5 stars.",s:5}]}
+];
+
+let currentFilter = 'All';
+let booked = false;
+
+function go(screen) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('s-' + screen).classList.add('active');
+  window.scrollTo(0,0);
+  if (screen === 'rides') renderRides();
+}
+
+function filter(el, f) {
+  currentFilter = f;
+  document.querySelectorAll('.fp').forEach(x => { x.classList.remove('fp-on'); x.classList.add('fp-off'); });
+  el.classList.remove('fp-off'); el.classList.add('fp-on');
+  renderRides();
+}
+
+function renderRides() {
+  const list = RIDES.filter(r => currentFilter === 'All' || r.tags.includes(currentFilter));
+  document.getElementById('rc').textContent = list.length + ' rides available';
+  document.getElementById('ride-list').innerHTML = list.map(r => `
+    <div class="rc" onclick="openDetail(${r.id})">
+      <div class="rdr">
+        <div class="av-lg" style="background:${r.grad}">${r.ini}</div>
+        <div class="din">
+          <div class="dnr">
+            <span class="dna">${r.driver}</span>
+            ${r.verified ? '<span class="vbg">✓ Stanford</span>' : ''}
+          </div>
+          <div class="dme">⭐ ${r.rating} · ${r.rides} rides · ${r.car}</div>
+        </div>
+        <div class="pcol"><div class="pbig">$${r.price}</div><div class="plbl">per seat</div></div>
+      </div>
+      <div class="rl">
+        <div class="rdots"><div class="dg"></div><div class="rlv"></div><div class="dr"></div></div>
+        <div class="rts"><div class="rfrom">${r.from}</div><div class="rto">${r.to}</div></div>
+      </div>
+      <div class="rftr">
+        <span class="rme">🗓 ${r.date} · ${r.time}</span>
+        <span class="rme" style="margin-left:4px">· 💺 ${r.seats} left</span>
+        <div class="rtags">${r.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openDetail(id) {
+  const r = RIDES[id];
+  booked = false;
+  document.getElementById('d-route').innerHTML = `<div class="dg"></div><span style="font-weight:500;color:#555;font-size:13px">${r.from}</span><span style="color:#ccc">→</span><span style="font-weight:700;color:#111;font-size:13px">${r.to}</span><div class="dr"></div>`;
+  document.getElementById('d-driver').innerHTML = `
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="av-lg" style="background:${r.grad}">${r.ini}</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-weight:700;font-size:16px;color:#111">${r.driver}</span>
+          ${r.verified ? '<span class="vbg">✓ Stanford</span>' : ''}
+        </div>
+        <div style="font-size:12px;color:#999;margin-top:3px">${r.dept}</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#f59e0b;font-weight:700">⭐ ${r.rating}</span><span style="color:#ccc;margin:0 6px">·</span><span style="color:#999">${r.rides} rides</span></div>
+      </div>
+      <button style="background:#f7f7f7;border:1px solid #eee;border-radius:14px;padding:10px 14px;font-size:14px;color:#555;cursor:pointer">💬 Chat</button>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:13px;line-height:1.6">${r.bio}</p>
+  `;
+  document.getElementById('d-trip').innerHTML = `
+    <div class="dlbl">Trip Details</div>
+    <div class="rl">
+      <div class="rdots"><div class="dg"></div><div class="rlv" style="min-height:32px"></div><div class="dr"></div></div>
+      <div class="rts">
+        <div><div style="font-weight:600;font-size:14px;color:#111">${r.from}</div><div style="font-size:12px;color:#aaa;margin-top:2px">${r.date} · ${r.time} departure</div></div>
+        <div><div style="font-weight:600;font-size:14px;color:#111">${r.to}</div><div style="font-size:12px;color:#aaa;margin-top:2px">~45 min estimated</div></div>
+      </div>
+    </div>
+    <div class="sgrid">
+      <div class="sb sb-r"><div class="sv-r">$${r.price}</div><div class="ss">per seat</div></div>
+      <div class="sb sb-g"><div class="sv">${r.seats}</div><div class="ss">seats left</div></div>
+      <div class="sb sb-g"><div class="sv">~45m</div><div class="ss">duration</div></div>
+    </div>
+    <div style="background:#f7f7f7;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;margin-top:12px">
+      <span style="font-size:16px">🚗</span><span style="font-size:13px;font-weight:600;color:#444">${r.car}</span>
+    </div>
+  `;
+  document.getElementById('d-wpts').innerHTML = `
+    <div class="dlbl">Route</div>
+    <div class="wpts">${r.wpts.map((w,i) => `<span class="wpt">${w}</span>${i<r.wpts.length-1?'<span class="warr">›</span>':''}`).join('')}</div>
+  `;
+  document.getElementById('d-revs').innerHTML = `
+    <div class="dlbl">Reviews</div>
+    ${r.revs.map(rv => `
+      <div class="rev">
+        <div class="rav">${rv.n[0]}</div>
+        <div>
+          <div><span class="rna">${rv.n}</span><span class="rst">${'★'.repeat(rv.s)}</span></div>
+          <div class="rtx">${rv.t}</div>
+        </div>
+      </div>
+    `).join('')}
+  `;
+  updateBookBtn();
+  go('detail');
+}
+
+function updateBookBtn() {
+  const btn = document.getElementById('d-btn');
+  const note = document.getElementById('d-note');
+  const r = RIDES[0]; // price doesn't matter which ride for the button label since we track by id
+  if (booked) {
+    btn.textContent = '✓ Requested — Driver will confirm';
+    btn.className = 'bbtn bbtn-ok';
+    note.style.display = 'none';
+  } else {
+    btn.textContent = 'Book a Ride · $' + (document.getElementById('d-trip') ? (document.getElementById('d-trip').querySelector('.sv-r') || {textContent:''}).textContent.replace('$','') : '22') + '/seat';
+    btn.className = 'bbtn';
+    note.style.display = 'block';
+  }
+}
+
+function bookRide() {
+  booked = true;
+  const btn = document.getElementById('d-btn');
+  btn.className = 'bbtn bbtn-ok';
+  btn.textContent = '✓ Requested — Driver will confirm';
+  document.getElementById('d-note').style.display = 'none';
+}
+
+function fillRoute(from, to) {
+  document.getElementById('p-from').value = from;
+  document.getElementById('p-to').value = to;
+}
+
+function updateHint() {
+  const p = parseFloat(document.getElementById('p-price').value);
+  const hint = document.getElementById('shint');
+  if (p > 0) {
+    const gas = (p * 0.6).toFixed(0);
+    hint.style.display = 'flex';
+    document.getElementById('shint-txt').textContent = 'Shapley-fair split suggests ~$' + gas + '/seat based on marginal cost. Your price is ' + (p <= gas ? 'fair ✓' : 'above fair — consider lowering');
+  } else {
+    hint.style.display = 'none';
+  }
+}
+
+function submitPost() {
+  document.getElementById('post-form').style.display = 'none';
+  document.getElementById('post-confirm').style.display = 'block';
+}
+
+renderRides();
+</script>
+</body>
+</html>
